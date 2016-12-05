@@ -70,8 +70,6 @@ defmodule Adventofcode.Day02BathroomCode do
   defp insane_move(?U, {x, y}) when abs(x) + abs(y - 1) > 2, do: {x, y}
   defp insane_move(?U, {x, y}), do: {x, y - 1}
 
-  defp get_distance({x, y}), do: abs(x) + abs(y)
-
   defp insane_button_pos({x, y}) do
     case {x, y} do
       {0, -2} -> "1"
