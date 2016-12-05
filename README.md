@@ -1,24 +1,13 @@
-# Adventofcode
+# Advent of Code 2016 Elixir
+Solutions for Advent of Code 2016 written in Elixir.
 
-**TODO: Add description**
+## Usage
+- `mix test` Run the ExUnit test suite
+
+Puzzle input files are untracked files `input/day_xx_yyyy_yyy.txt` that will get
+picked up by test suite if present. (But note that the the test suite is
+hardcoded to my results)
 
 ## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `adventofcode` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:adventofcode, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `adventofcode` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:adventofcode]]
-    end
-    ```
-
+- Install erlang
+- Install elixir
