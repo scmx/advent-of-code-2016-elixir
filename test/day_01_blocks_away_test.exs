@@ -2,6 +2,7 @@ defmodule Adventofcode.Day01BlocksAwayTest do
   use ExUnit.Case
 
   import Adventofcode.Day01BlocksAway
+  import Adventofcode.TestHelpers
 
   describe "blocks_away/1" do
     test "following R2, L3 leaves you 2 blocks East and 3 blocks North, or 5 blocks away" do
@@ -17,7 +18,9 @@ defmodule Adventofcode.Day01BlocksAwayTest do
     end
 
     test "with puzzle input" do
-      assert 253 = read_puzzle_input |> blocks_away
+      with_puzzle_input "input/day_01_blocks_away.txt", fn input ->
+        assert 253 = input |> blocks_away
+      end
     end
   end
 
@@ -35,13 +38,9 @@ defmodule Adventofcode.Day01BlocksAwayTest do
     end
 
     test "with puzzle input" do
-      assert 126 = read_puzzle_input |> first_revisit
+      with_puzzle_input "input/day_01_blocks_away.txt", fn input ->
+        assert 126 = input |> first_revisit
+      end
     end
-  end
-
-  defp read_puzzle_input(path \\ "input/day_01_blocks_away.txt") do
-    path
-    |> File.read!
-    |> String.trim
   end
 end
