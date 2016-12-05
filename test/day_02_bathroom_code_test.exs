@@ -21,4 +21,22 @@ defmodule Adventofcode.Day02BathroomCodeTest do
       end
     end
   end
+
+  describe "insane_code/1" do
+    test "with example instructions" do
+      assert "5DB3" =
+        """
+        ULL
+        RRDDD
+        LURDL
+        UUUUD
+        """ |> insane_code
+    end
+
+    test "with puzzle input" do
+      with_puzzle_input "input/day_02_bathroom_code.txt", fn input ->
+        assert "99C3D" = input |> insane_code
+      end
+    end
+  end
 end
