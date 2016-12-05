@@ -1,23 +1,51 @@
 defmodule Adventofcode.Day01BlocksAway do
   def blocks_away(instructions),
-    do: do_blocks_away(instructions |> decode)
+    do: instructions |> decode |> get_end_pos |> get_distance
 
-  def do_blocks_away(instructions),
-    do: instructions |> get_end_pos |> get_distance
+  def first_revisit(instructions),
+    do: instructions |> decode |> get_first_revisit_pos |> get_distance
 
   def get_distance({x, y}), do: abs(x) + abs(y)
 
-  def get_end_pos(instructions, position \\ {0, 0}, direction \\ :north)
-  def get_end_pos([], {x, y}, _dir), do: {x, y}
-  def get_end_pos([{turn, steps} | tail], {x, y}, dir),
-    do: get_end_pos([{steps} | tail], {x, y}, update_direction(turn, dir))
-  def get_end_pos([{steps} | tail], {x, y}, dir),
-    do: get_end_pos(tail, update_position({x, y}, steps, dir), dir)
+  def get_end_pos(
+    instructions,
+    direction \\ :north,
+    positions \\ [{0, 0}])
+  def get_end_pos([], _dir, [{x, y} | _tail]), do: {x, y}
+  def get_end_pos([{turn, steps} | tail], dir, positions),
+    do: get_end_pos([{steps} | tail], update_direction(turn, dir), positions)
+  def get_end_pos([{0}  | tail], dir, positions),
+    do: get_end_pos(tail, dir, positions)
+  def get_end_pos([{steps} | tail], dir, positions),
+    do: get_end_pos([{steps - 1} | tail], dir, positions |> move(dir))
 
-  def update_position({x, y}, steps, :north), do: {x, y - steps}
-  def update_position({x, y}, steps, :east), do: {x + steps, y}
-  def update_position({x, y}, steps, :south), do: {x, y + steps}
-  def update_position({x, y}, steps, :west), do: {x - steps, y}
+  def get_first_revisit_pos(
+    instructions,
+    direction \\ :north,
+    positions \\ [{0, 0}])
+  def get_first_revisit_pos([], _dir, [{x, y} | _tail]), do: {x, y}
+  def get_first_revisit_pos([{turn, steps} | tail], dir, positions),
+    do: get_first_revisit_pos([{steps} | tail], update_direction(turn, dir), positions)
+  def get_first_revisit_pos([{0}  | tail], dir, [last | rest] = positions) do
+    if rest |> Enum.member?(last) do
+      get_first_revisit_pos([], dir, positions)
+    else
+      get_first_revisit_pos(tail, dir, positions)
+    end
+  end
+
+  def get_first_revisit_pos([{steps} | tail], dir, [last | rest] = positions) do
+    if rest |> Enum.member?(last) do
+      get_first_revisit_pos([], dir, positions)
+    else
+      get_first_revisit_pos([{steps - 1} | tail], dir, positions |> move(dir))
+    end
+  end
+
+  def move([{x, y} | tail], :north), do: [{x, y - 1}, {x, y} | tail]
+  def move([{x, y} | tail], :east), do: [{x + 1, y}, {x, y} | tail]
+  def move([{x, y} | tail], :south), do: [{x, y + 1}, {x, y} | tail]
+  def move([{x, y} | tail], :west), do: [{x - 1, y}, {x, y} | tail]
 
   def update_direction(:R, :north), do: :east
   def update_direction(:R, :east), do: :south

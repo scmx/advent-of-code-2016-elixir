@@ -21,6 +21,24 @@ defmodule Adventofcode.Day01BlocksAwayTest do
     end
   end
 
+  describe "first_revisit" do
+    test"R8, R4, R4, R8, the first location you visit twice is 4 blocks away, due East" do
+      assert 4 = "R8, R4, R4, R8" |> first_revisit
+    end
+
+    test "L3 R2 R2 gives 3" do
+      assert 0 = "L3, R3, R3, R3" |> first_revisit
+    end
+
+    test "R2, L2, R2, R2, R2, L2" do
+      assert 2 = "R2, L2, R2, R2, R2, L2" |> first_revisit
+    end
+
+    test "with puzzle input" do
+      assert 126 = read_puzzle_input |> first_revisit
+    end
+  end
+
   defp read_puzzle_input(path \\ "input/day_01_blocks_away.txt") do
     path
     |> File.read!
