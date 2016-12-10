@@ -6,28 +6,28 @@ defmodule Adventofcode.Day03PossibleTrianglesTest do
 
   describe "possible_triangles/1" do
     test "impossible cases" do
-      assert [] = [{5, 10, 25}] |> possible_triangles
-      assert [] = [{5, 25, 10}] |> possible_triangles
-      assert [] = [{10, 5, 25}] |> possible_triangles
-      assert [] = [{10, 25, 5}] |> possible_triangles
-      assert [] = [{25, 5, 10}] |> possible_triangles
-      assert [] = [{25, 10, 5}] |> possible_triangles
-      assert [] = [{15, 10, 25}] |> possible_triangles
-      assert [] = [{15, 25, 10}] |> possible_triangles
-      assert [] = [{10, 15, 25}] |> possible_triangles
-      assert [] = [{10, 25, 15}] |> possible_triangles
-      assert [] = [{25, 15, 10}] |> possible_triangles
-      assert [] = [{25, 10, 15}] |> possible_triangles
-      assert [] = [{4, 2, 2}] |> possible_triangles
-      assert [] = [{2, 4, 2}] |> possible_triangles
-      assert [] = [{2, 2, 4}] |> possible_triangles
+      assert [] = [[5, 10, 25]] |> possible_triangles
+      assert [] = [[5, 25, 10]] |> possible_triangles
+      assert [] = [[10, 5, 25]] |> possible_triangles
+      assert [] = [[10, 25, 5]] |> possible_triangles
+      assert [] = [[25, 5, 10]] |> possible_triangles
+      assert [] = [[25, 10, 5]] |> possible_triangles
+      assert [] = [[15, 10, 25]] |> possible_triangles
+      assert [] = [[15, 25, 10]] |> possible_triangles
+      assert [] = [[10, 15, 25]] |> possible_triangles
+      assert [] = [[10, 25, 15]] |> possible_triangles
+      assert [] = [[25, 15, 10]] |> possible_triangles
+      assert [] = [[25, 10, 15]] |> possible_triangles
+      assert [] = [[4, 2, 2]] |> possible_triangles
+      assert [] = [[2, 4, 2]] |> possible_triangles
+      assert [] = [[2, 2, 4]] |> possible_triangles
     end
 
 
     test "possible cases" do
-      assert [{3, 2, 2}] = [{3, 2, 2}] |> possible_triangles
-      assert [{2, 3, 2}] = [{2, 3, 2}] |> possible_triangles
-      assert [{2, 2, 3}] = [{2, 2, 3}] |> possible_triangles
+      assert [[3, 2, 2]] = [[3, 2, 2]] |> possible_triangles
+      assert [[2, 3, 2]] = [[2, 3, 2]] |> possible_triangles
+      assert [[2, 2, 3]] = [[2, 2, 3]] |> possible_triangles
     end
 
     test "newline cases" do

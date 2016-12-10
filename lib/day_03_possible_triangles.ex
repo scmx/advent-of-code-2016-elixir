@@ -24,11 +24,10 @@ defmodule Adventofcode.Day03PossibleTriangles do
     |> String.replace(~r/\s+/, " ")
     |> String.split(" ")
     |> Enum.map(&String.to_integer/1)
-    |> :erlang.list_to_tuple
   end
 
-  defp possible_triangle?({x, y, z}) when x + y <= z, do: false
-  defp possible_triangle?({x, y, z}) when x + z <= y, do: false
-  defp possible_triangle?({x, y, z}) when y + z <= x, do: false
+  defp possible_triangle?([x, y, z]) when x + y <= z, do: false
+  defp possible_triangle?([x, y, z]) when x + z <= y, do: false
+  defp possible_triangle?([x, y, z]) when y + z <= x, do: false
   defp possible_triangle?(_), do: true
 end
