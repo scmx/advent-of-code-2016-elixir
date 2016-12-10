@@ -51,4 +51,17 @@ defmodule Adventofcode.Day03PossibleTrianglesTest do
       end
     end
   end
+
+  describe "vertical_triangles/1" do
+    test "with puzzle input" do
+      with_puzzle_input "input/day_03_possible_triangles.txt", fn input ->
+        assert 1838 = input |> vertical_triangles
+      end
+    end
+
+    test "parses into sane structure" do
+      assert [[2, 2, 2], [3, 3, 3], [4, 4, 4]] =
+             [[2, 3, 4], [2, 3, 4], [2, 3, 4]] |> vertical_triangles
+    end
+  end
 end
