@@ -4,7 +4,7 @@ defmodule Adventofcode.Day04SectorSumTest do
   import Adventofcode.Day04SectorSum
   import Adventofcode.TestHelpers
 
-  describe "sector_sum/1" do
+  describe "sector_sum_of/1" do
     test "is a real room because the most common letters are a (5), b (3), and
     then a tie between x, y, and z, which are listed alphabetically." do
       assert 123 = "aaaaa-bbb-z-y-x-123[abxyz]" |> sector_sum
@@ -26,6 +26,20 @@ defmodule Adventofcode.Day04SectorSumTest do
       with_puzzle_input "input/day_04_sector_sum.txt", fn input ->
         assert 278221 = input |> sector_sum
       end
+    end
+  end
+
+  describe "sector_id_northpole_object_storage/1" do
+    test "with puzzle input" do
+      with_puzzle_input "input/day_04_sector_sum.txt", fn input ->
+        assert 267 = input |> sector_id_northpole_object_storage
+      end
+    end
+  end
+
+  describe "decrypt/2" do
+    test "real name for qzmt-zixmtkozy-ivhz-343 is very encrypted name" do
+      assert "very encrypted name" = {"qzmt-zixmtkozy-ivhz", 343} |> decrypt
     end
   end
 end
