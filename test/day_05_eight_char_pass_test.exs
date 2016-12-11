@@ -4,6 +4,8 @@ defmodule Adventofcode.Day05EightCharPassTest do
   import Adventofcode.Day05EightCharPass
   import Adventofcode.TestHelpers
 
+  alias Adventofcode.Day05EightCharPass.Row
+
   describe "eight_char_pass/1" do
     test "with example input" do
       assert "18f47a30" = "abc" |> eight_char_pass
@@ -16,13 +18,23 @@ defmodule Adventofcode.Day05EightCharPassTest do
     end
   end
 
-  describe "five_zero_hashes/1" do
-    test "first index that produces a hash with five zeroes" do
-      assert [
-        "00000155f8105dff7f56ee10fa9b9abd",
-        "000008f82c5b3924a1ecbebf60344e00",
-      ] == "abc" |> five_zero_hashes |> Enum.take(2)
-    end
+  test "increasing_index/1" do
+    stream = %Row{door_id: "abc"} |> Stream.iterate(&increasing_index/1)
+    assert [
+      %Row{door_id: "abc", index: 0},
+      %Row{door_id: "abc", index: 1},
+      %Row{door_id: "abc", index: 2},
+    ] = stream |> Enum.take(3)
+  end
+
+  test "assign_hash/1" do
+    stream =
+      %Row{door_id: "abc"}
+      |> Stream.iterate(&increasing_index/1)
+      |> Stream.map(&assign_hash/1)
+    assert [
+      %Row{door_id: "abc", index: 0},
+    ] = stream |> Enum.take(1)
   end
 
   describe "md5/1" do
