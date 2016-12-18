@@ -65,4 +65,14 @@ defmodule Adventofcode.Day17TwoStepsForward do
     |> Enum.map(&String.trim(&1, passcode))
     |> Enum.find(&(&1))
   end
+
+  def longest_path(passcode) do
+    %Traveler{passcode: passcode}
+    |> Traveler.travel
+    |> Enum.map(&(&1.passcode))
+    |> Enum.sort_by(&(&1 |> String.length), &>=/2)
+    |> Enum.map(&String.trim(&1, passcode))
+    |> Enum.map(&String.length/1)
+    |> Enum.find(&(&1))
+  end
 end

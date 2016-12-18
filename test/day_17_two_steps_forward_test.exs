@@ -103,4 +103,22 @@ defmodule Adventofcode.Day17TwoStepsForward.TravlerTest do
       assert "RLDRUDRDDR" = "yjjvjgan" |> shortest_path
     end
   end
+
+  describe "longest_path/1" do
+    test "If your passcode were ihgpwlah, the longest path would take 370 steps" do
+      assert 370 == "ihgpwlah" |> longest_path
+    end
+
+    test "With kglvqrro, the longest path would be 492 steps long" do
+      assert 492 = "kglvqrro" |> longest_path
+    end
+
+    test "With ulqzkmiv, the longest path would be 830 steps long" do
+      assert 830 = "ulqzkmiv" |> longest_path
+    end
+
+    test "Your puzzle input is still yjjvjgan" do
+      assert 498 = "yjjvjgan" |> longest_path
+    end
+  end
 end
